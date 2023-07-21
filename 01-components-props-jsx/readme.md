@@ -18,11 +18,11 @@
 
 ## Project completed repo
 
-- check out the code here `->` [completed](https://github.com/hermkan/)
+- check out the code here `->` [completed](https://github.com/hermkan/react-part-I-projects/tree/main/01-components-props-jsx/completed)
 
 ## Project starter repo
 
-- check out the code here `->` [starter](https://github.com/hermkan/)
+- check out the code here `->` [starter](https://github.com/hermkan/react-part-I-projects/tree/main/01-components-props-jsx/starter)
 
 ## Concepts to review for this project
 
@@ -40,7 +40,7 @@ In building this application, we will sharpen our skills in React components by 
 
 ### Links
 
-- Live Site URL: [Pizza-menu](/)
+- Live Site URL: [Pizza-menu](https://pizza-menu-props-jsx-components.vercel.app/)
 
 ### Built with
 
@@ -49,14 +49,87 @@ In building this application, we will sharpen our skills in React components by 
 
 ## Code walkthrough
 
-In this project, the challenge is to build out this this pizza menu for a fictionnal restaurant!
+In this project, the challenge was to build out this this pizza menu for a fictionnal restaurant!
 
-In the **src/** folder, there is a file named `data.js` which contains an array of pizza objects with _name_, _ingredients_, _price_, _photoName_, and _soldOut_ as its properties.
-We used this to populate the pizza menu card.
+In the **src/** folder :
 
-`index.js` renders the `App` component. We used `.createRoot()` to supply a container where we will render the `App` component. Then, use `.render()` to render it into the DOM!
+- **data.js** contains an array of pizzas objects with _name_, _ingredients_, _price_, _photoName_, and _soldOut_ as its properties. We used this to populate the pizza menu.
 
-`style.css` and `index.html` handle the markup and styling respectively.
+```js
+// data.js
+const pizzaData = [
+  {
+    name: 'Focaccia',
+    ingredients: 'Bread with italian olive oil and rosemary',
+    price: 6,
+    photoName: 'pizzas/focaccia.jpg',
+    soldOut: false,
+  },
+  {
+    name: 'Pizza Margherita',
+    ingredients: 'Tomato and mozarella',
+    price: 10,
+    photoName: 'pizzas/margherita.jpg',
+    soldOut: false,
+  },
+  {
+    name: 'Pizza Spinaci',
+    ingredients: 'Tomato, mozarella, spinach, and ricotta cheese',
+    price: 12,
+    photoName: 'pizzas/spinaci.jpg',
+    soldOut: false,
+  },
+  {
+    name: 'Pizza Funghi',
+    ingredients: 'Tomato, mozarella, mushrooms, and onion',
+    price: 12,
+    photoName: 'pizzas/funghi.jpg',
+    soldOut: false,
+  },
+  {
+    name: 'Pizza Salamino',
+    ingredients: 'Tomato, mozarella, and pepperoni',
+    price: 15,
+    photoName: 'pizzas/salamino.jpg',
+    soldOut: true,
+  },
+  {
+    name: 'Pizza Prosciutto',
+    ingredients: 'Tomato, mozarella, ham, aragula, and burrata cheese',
+    price: 18,
+    photoName: 'pizzas/prosciutto.jpg',
+    soldOut: false,
+  },
+]
+```
+
+- **index.js** renders the `App` component. React relies on two things to render:
+
+1. what content to render
+2. and where to place the content at.
+
+We used `.createRoot()` from the `react-dom/client` library to supply a container (this is the where to render):
+
+```js
+const container = document.getElementById('root')
+const root = createRoot(container)
+```
+
+Then, we used `.render()` method to render `App` into the DOM! (this is the what to render)
+
+```js
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+)
+```
+
+- `style.css` handles styling.
+
+In the **public/** folder :
+
+-`index.html` handle the markup
 
 ### The `App` component
 
@@ -70,11 +143,13 @@ For our project, `App` is the top-level component, and it is responsible for ret
 - Menu
 - Footer
 
-In other words, `App` will be the outer “shell” that contains three smaller components.`App` is the parent, and `Header`, `Menu` and `Footer` are the child components.
+In other words, `App` will be the outer “shell” that contains three smaller components.
 
 Application components tree :
 
 ![component tree](./assets/comp-tree.png)
+
+`App` is the parent, and `Header`, `Menu` and `Footer` are the child components.
 
 We can render `Header`, `Menu`, and `Footer` components inside `App` like so :
 
@@ -111,11 +186,13 @@ function Header() {
 }
 ```
 
+![Header](./assets/header.png)
+
 ### The `Menu` component
 
-`Menu` is responsible for rendering mutiple instances of the `Pizza` component.
+`Menu` is responsible for rendering mutiple instances of the `Pizza` component(a list of pizzas).
 
-We can accomplish this like this :
+We can accomplish this like so :
 
 ```jsx
 function Menu() {
@@ -132,7 +209,7 @@ function Menu() {
 }
 ```
 
-- But we also want to render this list conditionally. If the list is empty we want to display a message saying `"We're still working on our menu. Please come back later"`. If the list is not empty, then we will display the list of pizzas. We will use the [ternary operator](https://github.com/hermkan/code-journey-notes/blob/main/notes/02-language-mastery/JS/01-fundamentals/1-fundamentals.md#conditionals) to accomplish this, because of the _compact syntax_ for writing a conditional expression:
+- But we also want to render this list conditionally. If the list is empty we want to display a message saying `"We're still working on our menu. Please come back later"`. If the list is not empty, then we will render it. We will use the [ternary operator](https://github.com/hermkan/code-journey-notes/blob/main/notes/02-language-mastery/JS/01-fundamentals/1-fundamentals.md#conditionals) to accomplish this because of the _compact syntax_ for writing conditional expressions:
 
 ```jsx
 function Menu() {
@@ -164,11 +241,11 @@ function Menu() {
 
 You can read it as "if `numPizzas` is _greater_ than 0" (i.e the list is not empty, so the condition is true) then `(?)` display the list, otherwise `(:)` render `<p>We're still working on our menu. Please come back later </p>`
 
-**Note**: Notice how we defined two constants `pizzas` and `numPizzas` locally (inside the function component) . This is because we want to keep the function pure. React components have to be pure functions in terms of props and state.
+**Note**: Notice how we defined two constants `pizzas` and `numPizzas` locally (inside the function component) . This is because we want to keep the function _pure_. React components have to be _pure_ functions (must not have side effects) in terms of props and state.
 
 - In react, when you want to display multiple similar components from a collection of data, you can use a JavaScript array method like `map()`. We only need to show several instances of the same component using different data : the `pizza name`, `the image`, the `ingredients`, `the price`, and `soldOut`.
 
-1. Our pizzas array looks like this:
+As a reminder, our `pizzaData` array looks like this:
 
 ```js
 const pizzaData = [
@@ -217,7 +294,7 @@ const pizzaData = [
 ]
 ```
 
-2. With this in mind, in the `Menu` component body, we can map over the `pizzaData` array with an argument named `pizza` and return an instance of the `Pizza` component for each pizza object.
+1. `Using map()`: With this in mind, in the `Menu` component body, we can map over the `pizzaData` array with an argument named `pizza` and return an instance of the `Pizza` component for each pizza object.
 
 Before :
 
@@ -253,7 +330,7 @@ After :
 }
 ```
 
-if we check our console in the browser we notice this error message :
+2. `Passing a key for each menu item` : if we check our console in the browser we notice this error message :
 
 ![error message](./assets/error-key.png)
 
@@ -273,7 +350,7 @@ This is because JSX elements directly inside a `map()` call always need _keys_! 
 }
 ```
 
-4. Finally, for each `pizza` component we'll pass the `pizzaObj` [props](https://github.com/hermkan/code-journey-notes/blob/main/notes/04-building-UI/02-react/01-react-introduction/Part%20I/4.components-interaction.md#props), which is an object full of information about each pizza.
+3. `Passing props` : Finally, for each `pizza` component we'll pass the `pizzaObj` [props](https://github.com/hermkan/code-journey-notes/blob/main/notes/04-building-UI/02-react/01-react-introduction/Part%20I/4.components-interaction.md#props), which is an object full of information about each pizza.
 
 pizzaObj :
 
@@ -305,7 +382,7 @@ passing `pizzaObj` props:
 
 Nice! we’ve set up `Menu` to pass down information to the `Pizza` component.
 The data in `data.js` is retrieved in `Menu` and flow downward from `Menu` to `Pizza`.
-If we put the pieces together, the final version of the `Menu` component looks like this :
+If we put the pieces together, the final version of the `Menu` component looks like so :
 
 ```jsx
 function Menu() {
@@ -390,6 +467,10 @@ function Pizza(props) {
 }
 ```
 
+Menu and Pizza components :
+
+![Menu](./assets/menu.png)
+
 ### The `Footer` component
 
 Footer is responsible for rendering an instance of the `Order` component or a message indicating the opening hour.
@@ -471,11 +552,9 @@ function Order(props) {
 }
 ```
 
-If you’ve succeeded, you should see the components rendered on the web browser by executing the command :
+Footer and order components :
 
-```bash
-npm run start
-```
+![Footer](./assets/footer.png)
 
 ## Concepts Recap - WORKING WITH COMPONENTS, PROPS, AND JSX
 
@@ -564,7 +643,3 @@ It’s time to access those and finally pass them to the children components: He
 <!-- Give the Header instance an attribute named profileImg and the value of props.commentObject.profileImg. -->
 
 <!-- If you’ve succeeded, you should see three comments rendered on the web browser, engaging in a riveting discussion about animals. -->
-
-```
-
-```

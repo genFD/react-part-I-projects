@@ -1,7 +1,3 @@
-/*!
- * Code walkthrough : <https://github.com/hermkan/code-journey-notes/blob/main/notes/04-building-UI/02-react/01-react-introduction/Part%20I/projects-notes/pizza-menu-project.md>
- */
-
 import React from 'react'
 import { createRoot } from 'react-dom/client'
 import { pizzaData } from './data.js'
