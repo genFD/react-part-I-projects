@@ -1,6 +1,11 @@
+/*!
+ * Code walkthrough : <https://github.com/hermkan/code-journey-notes/blob/main/notes/04-building-UI/02-react/01-react-introduction/Part%20I/projects-notes/pizza-menu-project.md>
+ */
+
 import React from 'react'
 import { createRoot } from 'react-dom/client'
-// import './index.css'
+import { pizzaData } from './data.js'
+import './index.css'
 
 function App() {
   return (
@@ -19,28 +24,69 @@ function Header() {
   )
 }
 function Menu() {
+  const pizzas = pizzaData
+  const numPizzas = pizzas.length
   return (
     <main className="menu">
       <h2>Our menu</h2>
-      <Pizza name="Pizza spinaci" ingredients="Tomato, sauce" />
+
+      {numPizzas > 0 ? (
+        <ul className="pizzas">
+          {pizzas.map((pizza) => (
+            <Pizza key={pizza.name} pizzaObj={pizza} />
+          ))}
+        </ul>
+      ) : (
+        <p>We're still working on our menu. Please come back later </p>
+      )}
     </main>
   )
 }
-function Pizza(props) {
-  const { name, ingredients } = props
-  return (
-    <div>
-      <img src="pizzas/spinaci.jpg" alt="pizza" />
-      <h3>{name}</h3>
-      <p>{ingredients}</p>
-    </div>
-  )
-}
+
 function Footer() {
+  const hour = new Date().getHours()
+  const openHour = 12
+  const closeHour = 22
+  const isOpen = hour >= openHour && hour <= closeHour
   return (
     <footer className="footer">
-      {new Date().toLocaleTimeString()}. We're currently open!
+      {isOpen ? (
+        <Order closeHour={closeHour} openHour={openHour} />
+      ) : (
+        <p>
+          We're happy to welcome you between {openHour}:00 and {closeHour}:00.
+        </p>
+      )}
     </footer>
+  )
+}
+
+function Pizza(props) {
+  const {
+    pizzaObj: { name, photoName, ingredients, price, soldOut },
+  } = props
+  return (
+    <li className={`pizza ${soldOut ? 'sold-out' : ''}`}>
+      <img src={photoName} alt={name} />
+      <div>
+        <h3>{name}</h3>
+        <p>{ingredients}</p>
+        <span>{soldOut ? 'SOLD OUT' : `$${price}`}</span>
+      </div>
+    </li>
+  )
+}
+
+function Order(props) {
+  const { closeHour, openHour } = props
+  return (
+    <div className="order">
+      <p>
+        We're open from {openHour}:00 to {closeHour}:00. Come visit us or order
+        online.
+      </p>
+      <button className="btn">Order</button>
+    </div>
   )
 }
 
