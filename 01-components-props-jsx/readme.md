@@ -129,7 +129,7 @@ root.render(
 
 In the **public/** folder :
 
--`index.html` handle the markup
+- `index.html` handles the markup
 
 ### The `App` component
 
@@ -186,6 +186,7 @@ function Header() {
 }
 ```
 
+Header :
 ![Header](./assets/header.png)
 
 ### The `Menu` component
