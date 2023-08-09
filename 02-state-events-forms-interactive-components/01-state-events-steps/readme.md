@@ -1,4 +1,4 @@
-# Travel List - State, events, forms and interactive components
+# Steps - State, events, forms and interactive components
 
 ## Table of contents
 

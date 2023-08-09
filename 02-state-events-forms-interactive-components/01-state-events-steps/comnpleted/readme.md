@@ -1,4 +1,4 @@
-# Intro
+# Steps
 
 ## Handling events
 
