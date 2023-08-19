@@ -1,4 +1,8 @@
-# Pizza menu - working with components, props, AND JSX
+# Pizza menu
+
+## Themes
+
+- working with components, props, AND JSX
 
 ## Table of contents
 
