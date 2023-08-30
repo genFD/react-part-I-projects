@@ -1,3 +1,0 @@
-# Themes
-
-- Components props jsx

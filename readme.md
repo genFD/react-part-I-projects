@@ -4,4 +4,6 @@
 
 2. useState and state management => [Travel List demo](demo) / [Travel List repo](repolink)
 
-3. Practice project => [Eat-n-split demo](demo) / [Eat-n-split repo](repolink)
+3. React-quizz
+
+4. Practice project => [Eat-n-split demo](demo) / [Eat-n-split repo](repolink)
