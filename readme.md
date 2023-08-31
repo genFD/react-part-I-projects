@@ -1,14 +1,27 @@
 # React - PART I
 
-- Components, props, JSX :
+## Components, props, JSX
 
-  - [Pizza Menu demo](https://pizza-menu-props-jsx-components.vercel.app/) / [Pizza Menu repo](https://github.com/hermkan/react-part-I-projects/tree/main/01-components-props-jsx)
+### Pizza Menu
 
-- useState and state management :
+- [Demo](https://pizza-menu-props-jsx-components.vercel.app/)
+- [Repo](https://github.com/hermkan/react-part-I-projects/tree/main/01-components-props-jsx)
 
-  - [React Quizz](demo) / [React Quizz repo](repolink)
-  - [Travel List demo](demo) / [Travel List repo](repolink)
+## useState and state management
 
-- Practice project :
+### React Quizz
 
-  - [Eat-n-split demo](demo) / [Eat-n-split repo](repolink)
+- [Demo](demo)
+- [Repo](repolink)
+
+### Travel List
+
+- [Demo](demo)
+- [Repo](repolink)
+
+## Practice project
+
+### Eat-n-split
+
+- [Demo](demo)
+- [Repo](repolink)
